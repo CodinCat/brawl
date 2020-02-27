@@ -2,15 +2,17 @@ import Canvas from './Canvas'
 import Stage from './Stage'
 import Brawler, { BrawlerCommand } from './Brawler'
 
-enum directionKeyCode {
+enum KeyCode {
   Left = 37,
   Up,
   Right,
   Down,
+  Z = 90,
+  X = 88,
+  Space = 32,
 }
 
 export default class GameController {
-  private speed = 40
   private stage = new Stage(this.canvas)
   private userBrawler: Brawler
 
@@ -23,7 +25,6 @@ export default class GameController {
     this.update()
     this.brawlers.find(b => {
       if (b.isUser) {
-        console.log('found')
         this.userBrawler = b
       }
     })
@@ -39,27 +40,36 @@ export default class GameController {
   }
 
   private scheduleNextUpdate() {
-    setTimeout(() => {
+    requestAnimationFrame(() => {
       this.update()
-    }, this.speed)
+    })
   }
 
   private handleKeyDown = event => {
-    console.log(this.userBrawler)
     if (!this.userBrawler) return
     console.log(event.keyCode)
     switch (event.keyCode) {
-      case directionKeyCode.Left:
+      case KeyCode.Left:
         this.userBrawler.pushCommand(BrawlerCommand.Left)
         break
-      case directionKeyCode.Up:
+      case KeyCode.Up:
         this.userBrawler.pushCommand(BrawlerCommand.Up)
         break
-      case directionKeyCode.Right:
+      case KeyCode.Right:
         this.userBrawler.pushCommand(BrawlerCommand.Right)
         break
-      case directionKeyCode.Down:
+      case KeyCode.Down:
         this.userBrawler.pushCommand(BrawlerCommand.Down)
+        break
+      case KeyCode.Z:
+        this.userBrawler.pushCommand(BrawlerCommand.RotateLeft)
+        break
+      case KeyCode.X:
+        this.userBrawler.pushCommand(BrawlerCommand.RotateRight)
+        break
+      case KeyCode.Space:
+        this.userBrawler.pushCommand(BrawlerCommand.Attack)
+        break
     }
   }
 }

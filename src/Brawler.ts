@@ -6,14 +6,15 @@ export enum BrawlerCommand {
   Up,
   Right,
   Down,
+  RotateLeft,
+  RotateRight,
+  Attack,
 }
 
 const getInitialPosition = () => ({ x: 20, y: 20 })
 
 export default class Brawler {
-  private stepX = 0
-  private stepY = 0
-  private degrees = 30
+  private degrees = 0
   private commandQueue: BrawlerCommand[] = []
   private collisionListener: Function[] = []
 
@@ -78,6 +79,15 @@ export default class Brawler {
       case BrawlerCommand.Down:
         this.position.x += 0
         this.position.y += 1
+        break
+      case BrawlerCommand.RotateLeft:
+        this.degrees -= 1
+        break
+      case BrawlerCommand.RotateRight:
+        this.degrees += 1
+        break
+      case BrawlerCommand.Attack:
+        this.attack()
         break
     }
   }

@@ -21,6 +21,7 @@ export default class Brawler {
     private canvas: Canvas,
     private position: Position = getInitialPosition(),
     private color = 'mediumseagreen',
+    public isUser = false,
   ) {
     this.canvas = canvas
     this.color = color
@@ -31,7 +32,7 @@ export default class Brawler {
     this.collisionListener.push(fn)
   }
 
-  public draw() {
+  public update() {
     this.canvas.drawRotatedRect(
       this.position.x,
       this.position.y,
@@ -40,13 +41,7 @@ export default class Brawler {
       this.color,
       this.degrees,
     )
-  }
-
-  public move() {
     this.executeNextCommand()
-    this.position.x += this.stepX
-    this.position.y += this.stepY
-    this.draw()
   }
 
   public attack() {
@@ -69,20 +64,20 @@ export default class Brawler {
     const command = this.commandQueue.shift()
     switch (command) {
       case BrawlerCommand.Left:
-        this.stepX = -1
-        this.stepY = 0
+        this.position.x += -1
+        this.position.y += 0
         break
       case BrawlerCommand.Up:
-        this.stepX = 0
-        this.stepY = -1
+        this.position.x += 0
+        this.position.y += -1
         break
       case BrawlerCommand.Right:
-        this.stepX = 1
-        this.stepY = 0
+        this.position.x += 1
+        this.position.y += 0
         break
       case BrawlerCommand.Down:
-        this.stepX = 0
-        this.stepY = 1
+        this.position.x += 0
+        this.position.y += 1
         break
     }
   }

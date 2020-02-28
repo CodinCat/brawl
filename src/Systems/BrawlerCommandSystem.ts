@@ -36,7 +36,7 @@ export default class BrawlerCommandSystem {
         this.game.addBullet(
           {
             x: entity.position.x + Math.floor(entity.rect.width / 2),
-            y: entity.position.y,
+            y: entity.position.y + Math.floor(entity.rect.height / 2),
           },
           entity.degrees,
         )

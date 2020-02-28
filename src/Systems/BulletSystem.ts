@@ -8,7 +8,9 @@ export default class BulletSystem {
 
   public updateBullets(bullets: Bullet[]) {
     bullets.forEach(b => {
-      this.game.moveSystem.moveY(b, -1)
+      const tilt = (b.degrees * Math.PI) / 180
+      this.game.moveSystem.moveX(b, Math.sin(tilt))
+      this.game.moveSystem.moveY(b, -Math.cos(tilt))
     })
   }
 }

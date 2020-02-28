@@ -1,5 +1,4 @@
-import Canvas from './Canvas'
-import { Position } from './Position'
+import RectEntity from './RectEntity'
 
 export enum BrawlerCommand {
   Left,
@@ -13,18 +12,18 @@ export enum BrawlerCommand {
 
 const getInitialPosition = () => ({ x: 20, y: 20 })
 
-export default class Brawler {
-  private degrees = 0
+export default class Brawler implements RectEntity {
+  type: 'RectEntity' = 'RectEntity'
+  public degrees = 0
+  public rect = { width: 10, height: 10 }
   private commandQueue: BrawlerCommand[] = []
   private collisionListener: Function[] = []
 
   constructor(
-    private canvas: Canvas,
-    private position: Position = getInitialPosition(),
-    private color = 'mediumseagreen',
+    public position = getInitialPosition(),
+    public color = 'mediumseagreen',
     public isUser = false,
   ) {
-    this.canvas = canvas
     this.color = color
     this.position = position
   }
@@ -34,14 +33,6 @@ export default class Brawler {
   }
 
   public update() {
-    this.canvas.drawRotatedRect(
-      this.position.x,
-      this.position.y,
-      10,
-      10,
-      this.color,
-      this.degrees,
-    )
     this.executeNextCommand()
   }
 
@@ -81,10 +72,10 @@ export default class Brawler {
         this.position.y += 1
         break
       case BrawlerCommand.RotateLeft:
-        this.degrees -= 1
+        this.degrees -= 10
         break
       case BrawlerCommand.RotateRight:
-        this.degrees += 1
+        this.degrees += 10
         break
       case BrawlerCommand.Attack:
         this.attack()

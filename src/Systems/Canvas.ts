@@ -7,30 +7,13 @@ export default class Canvas {
     this.gridSize = gridSize
   }
 
-  public drawRect(
-    x: number,
-    y: number,
-    width: number,
-    height: number,
-    color: string,
-  ) {
-    const ctx = this.getContext()
-    ctx.fillStyle = color
-    ctx.fillRect(
-      x * this.gridSize,
-      y * this.gridSize,
-      width * this.gridSize,
-      height * this.gridSize,
-    )
-  }
-
   public drawRotatedRect(
     x: number,
     y: number,
     width: number,
     height: number,
     color: string,
-    degrees: number,
+    degrees: number = 0,
   ) {
     const ctx = this.getContext()
     ctx.save()

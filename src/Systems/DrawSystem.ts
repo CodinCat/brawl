@@ -6,7 +6,7 @@ export default class DrawSystem {
     this.canvas = canvas
   }
 
-  public update(entities: Entity[] = []) {
+  public draw(entities: Entity[] = []) {
     entities.forEach(entity => {
       if (entity.type === 'RectEntity') {
         this.canvas.drawRotatedRect(

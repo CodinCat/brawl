@@ -1,4 +1,5 @@
-import Brawler, { BrawlerCommand } from '../Entities/Brawler'
+import BrawlerCommand from '../Components/BrawlerCommand'
+import Brawler from '../Entities/Brawler'
 
 enum KeyCode {
   Left = 37,
@@ -10,27 +11,19 @@ enum KeyCode {
   Space = 32,
 }
 
-export default class InputSystem {
-  private userBrawler: Brawler
-
-  constructor(brawlers: Brawler[]) {
-    brawlers.find(b => {
-      if (b.isUser) {
-        this.userBrawler = b
-      }
-    })
+export default class UserControlSystem {
+  constructor(private userBrawler: Brawler) {
+    this.userBrawler = userBrawler
   }
 
   public start() {
     window.addEventListener('keydown', this.handleKeyDown)
   }
 
-  public update() {}
-
   private handleKeyDown = event => {
     if (!this.userBrawler) return
     const command = this.getCommand(event.keyCode)
-    this.userBrawler.pushCommand(command)
+    this.userBrawler.commandQueue.push(command)
   }
 
   private getCommand(keyCode) {

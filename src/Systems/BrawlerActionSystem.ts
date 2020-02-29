@@ -6,6 +6,7 @@ export default class BrawlerActionSystem {
     this.game = game
   }
   public executeAction(brawler: Brawler) {
+    if (brawler.hp.value <= 0) return
     if (brawler.actionState.left) {
       this.game.moveSystem.moveX(brawler, -0.5)
     }

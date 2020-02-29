@@ -17,7 +17,11 @@ export default class DrawSystem {
         case 'BrawlerEntity':
           this.drawRect(entity)
           this.drawHPBar(entity)
-          this.drawBulletCount(entity)
+          if (entity.hp.value <= 0) {
+            this.drawDiedState(entity)
+          } else {
+            this.drawBulletCount(entity)
+          }
           break
       }
     })
@@ -61,6 +65,16 @@ export default class DrawSystem {
       brawler.position.x + 10,
       brawler.position.y - 1,
       'black',
+    )
+  }
+
+  private drawDiedState(brawler: Brawler) {
+    this.canvas.drawText(
+      'Died',
+      brawler.position.x + 1,
+      brawler.position.y + 5,
+      'black',
+      '14px silom',
     )
   }
 }

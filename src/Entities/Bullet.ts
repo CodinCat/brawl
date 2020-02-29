@@ -7,6 +7,7 @@ export default class Bullet implements RectEntity {
   type: 'RectEntity' = 'RectEntity'
   color = 'black'
   rect = { width: 1, height: 1 }
+  ttl = 50
 
   constructor(
     public owner: Brawler,

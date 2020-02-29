@@ -1,6 +1,7 @@
 import Canvas from './Canvas'
 import Entity from '../Entities/Entity'
 import Brawler from '../Entities/Brawler'
+import RectEntity from '../Entities/RectEntity'
 
 export default class DrawSystem {
   constructor(private canvas: Canvas) {
@@ -15,7 +16,7 @@ export default class DrawSystem {
           break
 
         case 'BrawlerEntity':
-          this.drawRect(entity)
+          this.drawBrawler(entity)
           this.drawHPBar(entity)
           if (entity.hp.value <= 0) {
             this.drawDiedState(entity)
@@ -27,7 +28,7 @@ export default class DrawSystem {
     })
   }
 
-  private drawRect(entity: Entity) {
+  private drawRect(entity: RectEntity) {
     this.canvas.drawRotatedRect(
       entity.position.x,
       entity.position.y,
@@ -38,20 +39,29 @@ export default class DrawSystem {
     )
   }
 
+  private drawBrawler(brawler: Brawler) {
+    this.canvas.drawCircle(
+      brawler.position.x,
+      brawler.position.y,
+      brawler.circle.radius,
+      brawler.color,
+    )
+  }
+
   private drawHPBar(brawler: Brawler) {
     this.canvas.drawRotatedRect(
-      brawler.position.x - 0.5,
-      brawler.position.y - 3,
-      brawler.rect.width + 1,
+      brawler.position.x - 4.5,
+      brawler.position.y - 8,
+      brawler.circle.radius * 2 - 1,
       2,
       'black',
       0,
     )
     if (brawler.hp.value > 0) {
       this.canvas.drawRotatedRect(
-        brawler.position.x,
-        brawler.position.y - 2.5,
-        (brawler.hp.value / brawler.hp.full) * brawler.rect.width,
+        brawler.position.x - 4,
+        brawler.position.y - 7.5,
+        (brawler.hp.value / brawler.hp.full) * (brawler.circle.radius * 2 - 2),
         1,
         'tomato',
         0,
@@ -62,8 +72,8 @@ export default class DrawSystem {
   private drawBulletCount(brawler: Brawler) {
     this.canvas.drawText(
       `${brawler.bullet.count}`,
-      brawler.position.x + 10,
-      brawler.position.y - 1,
+      brawler.position.x + 5.5,
+      brawler.position.y - 6.5,
       'black',
     )
   }
@@ -71,8 +81,8 @@ export default class DrawSystem {
   private drawDiedState(brawler: Brawler) {
     this.canvas.drawText(
       'Died',
-      brawler.position.x + 1,
-      brawler.position.y + 5,
+      brawler.position.x - 3,
+      brawler.position.y + 0.5,
       'black',
       '14px silom',
     )

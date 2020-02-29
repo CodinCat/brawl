@@ -56,6 +56,7 @@ export default class Game {
 
   private update() {
     this.bulletSystem.moveBullets(this.bullets)
+    this.bulletSystem.removeLeftBullets(this.bullets)
     this.bulletSystem.reload(this.brawlers, this.frameCount)
     this.collisionSystem.update(this.brawlers, this.bullets)
     this.executeBrawlersActions()

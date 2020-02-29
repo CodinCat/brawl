@@ -25,7 +25,16 @@ export default class BulletSystem {
         x: Math.sin(b.radian) * BULLET_SPEED,
         y: -Math.cos(b.radian) * BULLET_SPEED,
       })
+      b.ttl--
     })
+  }
+
+  public removeLeftBullets(bullets: Bullet[]) {
+    for (let i = 0; i < bullets.length; i++) {
+      if (bullets[i].ttl <= 0) {
+        bullets.splice(i, 1)
+      }
+    }
   }
 
   public reload(brawlers: Brawler[], frameCount: number) {

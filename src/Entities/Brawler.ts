@@ -7,7 +7,7 @@ const getInitialPosition = () => ({ x: 20, y: 20 })
 export default class Brawler {
   type: 'BrawlerEntity' = 'BrawlerEntity'
   public radian = 0
-  public rect = { width: 9, height: 9 }
+  public circle = { radius: 5 }
   public actionState = new ActionState()
   public hp = new HP()
   public bullet = new Bullet()

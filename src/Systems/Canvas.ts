@@ -35,6 +35,20 @@ export default class Canvas {
     ctx.restore()
   }
 
+  public drawCircle(x: number, y: number, r: number, color: string) {
+    const ctx = this.getContext()
+    ctx.beginPath()
+    ctx.fillStyle = color
+    ctx.arc(
+      x * this.gridSize,
+      y * this.gridSize,
+      r * this.gridSize,
+      0,
+      2 * Math.PI,
+    )
+    ctx.fill()
+  }
+
   public drawText(
     text: string,
     x: number,

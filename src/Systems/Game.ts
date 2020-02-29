@@ -8,8 +8,9 @@ import MoveSystem from './MoveSystem'
 import RotateSystem from './RotateSystem'
 import UserControlSystem from './UserControlSystem'
 import BrawlerActionSystem from './BrawlerActionSystem'
-import Canvas from './Canvas'
 import BulletSystem from './BulletSystem'
+import CollisionSystem from './CollisionSystem'
+import Canvas from './Canvas'
 
 export default class Game {
   public drawSystem: DrawSystem
@@ -17,6 +18,7 @@ export default class Game {
   public rotateSystem = new RotateSystem()
   public bulletSystem = new BulletSystem(this)
   public brawlerActionSystem = new BrawlerActionSystem(this)
+  public collisionSystem = new CollisionSystem(this)
   public bullets: Bullet[] = []
   private stage = new Stage({ height: 120, width: 160 })
 
@@ -35,14 +37,20 @@ export default class Game {
     this.update()
   }
 
-  public addBullet(p: Position, radian: Radian) {
-    this.bullets.push(new Bullet(p, radian))
+  public addBullet(owner: Brawler, p: Position, radian: Radian) {
+    this.bullets.push(new Bullet(owner, p, radian))
+  }
+
+  public removeBullet(bullet: Bullet) {
+    const index = this.bullets.indexOf(bullet)
+    this.bullets.splice(index, 1)
   }
 
   private update() {
-    this.drawSystem.draw([this.stage, ...this.brawlers, ...this.bullets])
     this.bulletSystem.updateBullets(this.bullets)
+    this.collisionSystem.update(this.brawlers, this.bullets)
     this.executeBrawlersActions()
+    this.drawSystem.draw([this.stage, ...this.brawlers, ...this.bullets])
     this.scheduleNextUpdate()
   }
 

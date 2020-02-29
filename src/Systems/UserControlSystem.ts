@@ -34,7 +34,6 @@ export default class UserControlSystem {
   }
 
   private getCommand(keyCode) {
-    console.log(keyCode)
     switch (keyCode) {
       case KeyCode.Left:
         return 'left'

@@ -1,6 +1,5 @@
 import Brawler from '../Entities/Brawler'
 import Game from './Game'
-import { getCenterPoint } from '../utils'
 
 export default class BrawlerActionSystem {
   constructor(private game: Game) {
@@ -26,7 +25,7 @@ export default class BrawlerActionSystem {
       this.game.rotateSystem.right(brawler)
     }
     if (brawler.actionState.attack) {
-      this.game.addBullet(brawler, getCenterPoint(brawler), brawler.radian)
+      this.game.bulletSystem.shoot(brawler)
     }
   }
 }

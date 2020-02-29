@@ -40,12 +40,12 @@ export default class Canvas {
     x: number,
     y: number,
     color: string,
-    font: string,
+    font: string = '10px arial',
   ) {
     const ctx = this.getContext()
     ctx.fillStyle = color
     ctx.font = font
-    ctx.fillText(text, x, y)
+    ctx.fillText(text, x * this.gridSize, y * this.gridSize)
   }
 
   public getCanvas() {

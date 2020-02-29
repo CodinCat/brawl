@@ -1,3 +1,4 @@
+import Bullet from '../Components/Bullet'
 import ActionState from '../Components/ActionState'
 import HP from '../Components/HP'
 
@@ -9,6 +10,7 @@ export default class Brawler {
   public rect = { width: 9, height: 9 }
   public actionState = new ActionState()
   public hp = new HP()
+  public bullet = new Bullet()
 
   constructor(
     public position = getInitialPosition(),

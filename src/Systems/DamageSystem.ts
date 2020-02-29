@@ -3,6 +3,6 @@ import Bullet from '../Entities/Bullet'
 
 export default class DamageSystem {
   public damage(brawler: Brawler, bullet: Bullet) {
-    brawler.hp.value -= 10
+    brawler.hp.value -= 20
   }
 }

@@ -25,6 +25,7 @@ export default class Game {
   public damageSystem = new DamageSystem()
   public aiSystem = new AISystem(this)
   public bullets: Bullet[] = []
+  public frameCount = 0
   private stage = new Stage({ height: 120, width: 160 })
 
   constructor(
@@ -45,8 +46,8 @@ export default class Game {
     this.update()
   }
 
-  public addBullet(owner: Brawler, p: Position, radian: Radian) {
-    this.bullets.push(new Bullet(owner, p, radian))
+  public addBullet(bullet: Bullet) {
+    this.bullets.push(bullet)
   }
 
   public removeBullet(index: number) {
@@ -54,19 +55,21 @@ export default class Game {
   }
 
   private update() {
-    this.bulletSystem.updateBullets(this.bullets)
+    this.bulletSystem.moveBullets(this.bullets)
+    this.bulletSystem.reload(this.brawlers, this.frameCount)
     this.collisionSystem.update(this.brawlers, this.bullets)
     this.executeBrawlersActions()
     this.drawSystem.draw([this.stage, ...this.brawlers, ...this.bullets])
     this.scheduleNextUpdate()
+    this.frameCount++
   }
 
   private executeBrawlersActions() {
     this.brawlers.forEach(brawler => {
-      this.brawlerActionSystem.executeAction(brawler)
       if (this.isAIBrawler(brawler)) {
         this.aiSystem.update(brawler)
       }
+      this.brawlerActionSystem.executeAction(brawler)
     })
   }
 

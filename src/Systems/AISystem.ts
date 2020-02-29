@@ -1,6 +1,6 @@
 import Brawler from '../Entities/Brawler'
 import Bullet from '../Entities/Bullet'
-import AI, { AIControlledBrawlerCommand } from '../AIAPI/AI'
+import AIControlledBrawlerCommand from '../AIAPI/AIControlledBrawlerCommand'
 import Game from './Game'
 import AIBrawler from '../Entities/AIBrawler'
 

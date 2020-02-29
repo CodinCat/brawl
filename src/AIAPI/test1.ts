@@ -1,6 +1,6 @@
 import Brawler from '../Entities/Brawler'
 import Bullet from '../Entities/Bullet'
-import { AIControlledBrawler } from './AI'
+import AIControlledBrawler from './AIControlledBrawler'
 
 export default function(
   ownedBrawler: AIControlledBrawler,
@@ -23,7 +23,7 @@ export default function(
   }
   if (r > 0.95) {
     ownedBrawler.rotateLeft()
-  } else if (r > 0.9) {
+  } else if (r > 0.8) {
     ownedBrawler.rotateRight()
   }
 }

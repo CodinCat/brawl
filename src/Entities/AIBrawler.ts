@@ -1,5 +1,6 @@
 import AI from '../Components/AI'
-import AIFn, { AIControlledBrawler } from '../AIAPI/AI'
+import AIControlledBrawler from '../AIAPI/AIControlledBrawler'
+import AIFn from '../AIAPI/AIFn'
 import Brawler from './Brawler'
 
 export default class AIBrawler extends Brawler {

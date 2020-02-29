@@ -1,16 +1,6 @@
-import Brawler from '../Entities/Brawler'
-import Bullet from '../Entities/Bullet'
+import AIControlledBrawlerCommand from './AIControlledBrawlerCommand'
 
-export enum AIControlledBrawlerCommand {
-  Attack,
-  MoveUp,
-  MoveDown,
-  MoveLeft,
-  MoveRight,
-  RotateLeft,
-  RotateRight,
-}
-export class AIControlledBrawler {
+export default class AIControlledBrawler {
   public commandQueue = []
   attack() {
     this.commandQueue.push(AIControlledBrawlerCommand.Attack)
@@ -34,11 +24,3 @@ export class AIControlledBrawler {
     this.commandQueue.push(AIControlledBrawlerCommand.RotateRight)
   }
 }
-
-type AIFn = (
-  ownedBrawler: AIControlledBrawler,
-  brawlers: Brawler[],
-  bullets: Bullet[],
-) => void
-
-export default AIFn

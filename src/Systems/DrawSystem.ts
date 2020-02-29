@@ -17,6 +17,7 @@ export default class DrawSystem {
         case 'BrawlerEntity':
           this.drawRect(entity)
           this.drawHPBar(entity)
+          this.drawBulletCount(entity)
           break
       }
     })
@@ -52,5 +53,14 @@ export default class DrawSystem {
         0,
       )
     }
+  }
+
+  private drawBulletCount(brawler: Brawler) {
+    this.canvas.drawText(
+      `${brawler.bullet.count}`,
+      brawler.position.x + 10,
+      brawler.position.y - 1,
+      'black',
+    )
   }
 }

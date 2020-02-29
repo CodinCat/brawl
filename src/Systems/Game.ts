@@ -1,4 +1,4 @@
-import Degrees from '../Components/Degrees'
+import Radian from '../Components/Radian'
 import Position from '../Components/Position'
 import Stage from '../Entities/Stage'
 import Brawler from '../Entities/Brawler'
@@ -35,8 +35,8 @@ export default class Game {
     this.update()
   }
 
-  public addBullet(p: Position, degrees: Degrees) {
-    this.bullets.push(new Bullet(p, degrees))
+  public addBullet(p: Position, radian: Radian) {
+    this.bullets.push(new Bullet(p, radian))
   }
 
   private update() {

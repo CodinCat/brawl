@@ -13,7 +13,7 @@ export default class Canvas {
     width: number,
     height: number,
     color: string,
-    degrees: number = 0,
+    radian: number = 0,
   ) {
     const ctx = this.getContext()
     ctx.save()
@@ -22,7 +22,7 @@ export default class Canvas {
       (x + width / 2) * this.gridSize,
       (y + height / 2) * this.gridSize,
     )
-    ctx.rotate((degrees * Math.PI) / 180)
+    ctx.rotate(radian)
     ctx.rect(
       (-width / 2) * this.gridSize,
       (-height / 2) * this.gridSize,

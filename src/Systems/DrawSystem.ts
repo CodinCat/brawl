@@ -15,7 +15,7 @@ export default class DrawSystem {
           entity.rect.width,
           entity.rect.height,
           entity.color,
-          entity.degrees,
+          entity.radian,
         )
       }
     })

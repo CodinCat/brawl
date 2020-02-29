@@ -5,7 +5,7 @@ const getInitialPosition = () => ({ x: 20, y: 20 })
 
 export default class Brawler implements RectEntity {
   type: 'RectEntity' = 'RectEntity'
-  public degrees = 0
+  public radian = 0
   public rect = { width: 9, height: 9 }
   public actionState = new ActionState()
 

@@ -30,7 +30,7 @@ export default class BrawlerActionSystem {
           x: brawler.position.x + Math.floor(brawler.rect.width / 2),
           y: brawler.position.y + Math.floor(brawler.rect.height / 2),
         },
-        brawler.degrees,
+        brawler.radian,
       )
     }
   }

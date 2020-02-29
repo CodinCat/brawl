@@ -1,10 +1,12 @@
 import Entity from '../Entities/Entity'
 
+const ROTATE_SPEED = 0.07
+
 export default class RotateSystem {
-  public left(entity: Entity, degrees = 4) {
-    entity.degrees -= degrees
+  public left(entity: Entity, radian = ROTATE_SPEED) {
+    entity.radian -= radian
   }
-  public right(entity: Entity, degrees = 4) {
-    entity.degrees += degrees
+  public right(entity: Entity, radian = ROTATE_SPEED) {
+    entity.radian += radian
   }
 }

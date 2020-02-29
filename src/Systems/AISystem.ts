@@ -8,10 +8,12 @@ export default class AISystem {
   constructor(private game: Game) {
     this.game = game
   }
+
   public update(brawler: AIBrawler) {
     brawler.ai.fn(brawler.ai.brawlerAPI, this.game.brawlers, this.game.bullets)
     this.flushCommands(brawler)
   }
+
   private flushCommands(brawler: AIBrawler) {
     Object.keys(brawler.actionState).forEach(key => {
       brawler.actionState[key] = false
@@ -22,6 +24,7 @@ export default class AISystem {
     })
     brawler.ai.brawlerAPI.commandQueue = []
   }
+
   private getActionStateKey(command: AIControlledBrawlerCommand) {
     switch (command) {
       case AIControlledBrawlerCommand.MoveLeft:

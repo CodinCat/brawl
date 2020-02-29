@@ -3,8 +3,6 @@ import Bullet from '../Entities/Bullet'
 import Brawler from '../Entities/Brawler'
 import { getCenterPoint } from '../utils'
 
-const BULLET_SPEED = 1.3
-
 export default class BulletSystem {
   constructor(private game: Game) {
     this.game = game
@@ -22,8 +20,8 @@ export default class BulletSystem {
   public moveBullets(bullets: Bullet[]) {
     bullets.forEach(b => {
       this.game.moveSystem.move(b, {
-        x: Math.sin(b.radian) * BULLET_SPEED,
-        y: -Math.cos(b.radian) * BULLET_SPEED,
+        x: Math.sin(b.radian) * b.speed,
+        y: -Math.cos(b.radian) * b.speed,
       })
       b.ttl--
     })

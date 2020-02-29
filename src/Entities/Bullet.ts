@@ -8,6 +8,8 @@ export default class Bullet implements RectEntity {
   color = 'black'
   rect = { width: 1, height: 1 }
   ttl = 50
+  damage = 40
+  speed = 1.3
 
   constructor(
     public owner: Brawler,

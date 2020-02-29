@@ -24,6 +24,6 @@ export default class CollisionSystem {
   private isCollided(e1: Entity, e2: Entity) {
     const e1Center = getCenterPoint(e1)
     const e2Center = getCenterPoint(e2)
-    return (e1Center.x - e2Center.x) ** 2 + (e1Center.y - e2Center.y) ** 2 < 40
+    return (e1Center.x - e2Center.x) ** 2 + (e1Center.y - e2Center.y) ** 2 < 28
   }
 }

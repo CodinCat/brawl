@@ -2,6 +2,7 @@ import Radian from '../Components/Radian'
 import Position from '../Components/Position'
 import Stage from '../Entities/Stage'
 import Brawler from '../Entities/Brawler'
+import AIBrawler from '../Entities/AIBrawler'
 import Bullet from '../Entities/Bullet'
 import DrawSystem from './DrawSystem'
 import MoveSystem from './MoveSystem'
@@ -12,6 +13,7 @@ import BulletSystem from './BulletSystem'
 import CollisionSystem from './CollisionSystem'
 import DamageSystem from './DamageSystem'
 import Canvas from './Canvas'
+import AISystem from './AISystem'
 
 export default class Game {
   public drawSystem: DrawSystem
@@ -21,10 +23,14 @@ export default class Game {
   public brawlerActionSystem = new BrawlerActionSystem(this)
   public collisionSystem = new CollisionSystem(this)
   public damageSystem = new DamageSystem()
+  public aiSystem = new AISystem(this)
   public bullets: Bullet[] = []
   private stage = new Stage({ height: 120, width: 160 })
 
-  constructor(canvasElement: HTMLCanvasElement, public brawlers: Brawler[]) {
+  constructor(
+    canvasElement: HTMLCanvasElement,
+    public brawlers: (Brawler | AIBrawler)[],
+  ) {
     this.brawlers = brawlers
     this.drawSystem = new DrawSystem(new Canvas(canvasElement, 5))
   }
@@ -58,7 +64,14 @@ export default class Game {
   private executeBrawlersActions() {
     this.brawlers.forEach(brawler => {
       this.brawlerActionSystem.executeAction(brawler)
+      if (this.isAIBrawler(brawler)) {
+        this.aiSystem.update(brawler)
+      }
     })
+  }
+
+  private isAIBrawler(brawler): brawler is AIBrawler {
+    return typeof brawler.ai !== 'undefined'
   }
 
   private scheduleNextUpdate() {

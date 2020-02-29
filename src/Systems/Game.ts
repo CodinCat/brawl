@@ -10,6 +10,7 @@ import UserControlSystem from './UserControlSystem'
 import BrawlerActionSystem from './BrawlerActionSystem'
 import BulletSystem from './BulletSystem'
 import CollisionSystem from './CollisionSystem'
+import DamageSystem from './DamageSystem'
 import Canvas from './Canvas'
 
 export default class Game {
@@ -19,6 +20,7 @@ export default class Game {
   public bulletSystem = new BulletSystem(this)
   public brawlerActionSystem = new BrawlerActionSystem(this)
   public collisionSystem = new CollisionSystem(this)
+  public damageSystem = new DamageSystem()
   public bullets: Bullet[] = []
   private stage = new Stage({ height: 120, width: 160 })
 
@@ -41,8 +43,7 @@ export default class Game {
     this.bullets.push(new Bullet(owner, p, radian))
   }
 
-  public removeBullet(bullet: Bullet) {
-    const index = this.bullets.indexOf(bullet)
+  public removeBullet(index: number) {
     this.bullets.splice(index, 1)
   }
 

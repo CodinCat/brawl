@@ -11,11 +11,11 @@ export default class CollisionSystem {
 
   public update(brawlers: Brawler[], bullets: Bullet[]) {
     brawlers.forEach(brawler => {
-      bullets.forEach(bullet => {
+      bullets.forEach((bullet, bulletIndex) => {
         if (bullet.owner === brawler) return
         if (this.isCollided(brawler, bullet)) {
-          console.log('hit')
-          this.game.removeBullet(bullet)
+          this.game.removeBullet(bulletIndex)
+          this.game.damageSystem.damage(brawler, bullet)
         }
       })
     })

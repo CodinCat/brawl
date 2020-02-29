@@ -7,7 +7,7 @@ import DrawSystem from './DrawSystem'
 import MoveSystem from './MoveSystem'
 import RotateSystem from './RotateSystem'
 import UserControlSystem from './UserControlSystem'
-import BrawlerCommandSystem from './BrawlerCommandSystem'
+import BrawlerActionSystem from './BrawlerActionSystem'
 import Canvas from './Canvas'
 import BulletSystem from './BulletSystem'
 
@@ -16,7 +16,7 @@ export default class Game {
   public moveSystem = new MoveSystem()
   public rotateSystem = new RotateSystem()
   public bulletSystem = new BulletSystem(this)
-  public brawlerCommandSystem = new BrawlerCommandSystem(this)
+  public brawlerActionSystem = new BrawlerActionSystem(this)
   public bullets: Bullet[] = []
   private stage = new Stage({ height: 120, width: 160 })
 
@@ -42,14 +42,13 @@ export default class Game {
   private update() {
     this.drawSystem.draw([this.stage, ...this.brawlers, ...this.bullets])
     this.bulletSystem.updateBullets(this.bullets)
-    this.flushBrawlersCommands()
+    this.executeBrawlersActions()
     this.scheduleNextUpdate()
   }
 
-  private flushBrawlersCommands() {
+  private executeBrawlersActions() {
     this.brawlers.forEach(brawler => {
-      const command = brawler.commandQueue.shift()
-      this.brawlerCommandSystem.executeCommand(brawler, command)
+      this.brawlerActionSystem.executeAction(brawler)
     })
   }
 

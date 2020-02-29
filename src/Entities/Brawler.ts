@@ -1,5 +1,5 @@
 import RectEntity from './RectEntity'
-import BrawlerCommand from '../Components/BrawlerCommand'
+import ActionState from '../Components/ActionState'
 
 const getInitialPosition = () => ({ x: 20, y: 20 })
 
@@ -7,7 +7,7 @@ export default class Brawler implements RectEntity {
   type: 'RectEntity' = 'RectEntity'
   public degrees = 0
   public rect = { width: 9, height: 9 }
-  public commandQueue: BrawlerCommand[] = []
+  public actionState = new ActionState()
 
   constructor(
     public position = getInitialPosition(),

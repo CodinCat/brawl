@@ -1,4 +1,3 @@
-import BrawlerCommand from '../Components/BrawlerCommand'
 import Brawler from '../Entities/Brawler'
 
 enum KeyCode {
@@ -17,38 +16,46 @@ export default class UserControlSystem {
   }
 
   public start() {
+    if (!this.userBrawler) return
     window.addEventListener('keydown', this.handleKeyDown)
+    window.addEventListener('keyup', this.handleKeyUp)
   }
 
   private handleKeyDown = event => {
-    if (!this.userBrawler) return
     const command = this.getCommand(event.keyCode)
-    this.userBrawler.commandQueue.push(command)
+    if (!command) return
+    this.userBrawler.actionState[command] = true
+  }
+
+  private handleKeyUp = event => {
+    const command = this.getCommand(event.keyCode)
+    if (!command) return
+    this.userBrawler.actionState[command] = false
   }
 
   private getCommand(keyCode) {
     console.log(keyCode)
     switch (keyCode) {
       case KeyCode.Left:
-        return BrawlerCommand.Left
+        return 'left'
 
       case KeyCode.Up:
-        return BrawlerCommand.Up
+        return 'up'
 
       case KeyCode.Right:
-        return BrawlerCommand.Right
+        return 'right'
 
       case KeyCode.Down:
-        return BrawlerCommand.Down
+        return 'down'
 
       case KeyCode.Z:
-        return BrawlerCommand.RotateLeft
+        return 'rotateLeft'
 
       case KeyCode.X:
-        return BrawlerCommand.RotateRight
+        return 'rotateRight'
 
       case KeyCode.Space:
-        return BrawlerCommand.Attack
+        return 'attack'
     }
   }
 }

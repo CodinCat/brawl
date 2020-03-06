@@ -13,6 +13,9 @@ export default class CollisionSystem {
     brawlers.forEach(brawler => {
       bullets.forEach((bullet, bulletIndex) => {
         if (bullet.owner === brawler) return
+        // is teammate
+        if (brawler.team != null && bullet.owner.team === brawler.team) return
+
         if (this.isCollided(brawler, bullet)) {
           this.game.removeBullet(bulletIndex)
           this.game.damageSystem.damage(brawler, bullet)

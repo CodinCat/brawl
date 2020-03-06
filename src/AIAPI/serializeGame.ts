@@ -2,7 +2,7 @@ import Brawler from '../Entities/Brawler'
 import Bullet from '../Entities/Bullet'
 import Game from '../Systems/Game'
 
-const serializeBrawler = (b: Brawler) => ({
+export const serializeBrawler = (b: Brawler) => ({
   radius: b.circle.radius,
   radian: b.radian,
   x: b.position.x,

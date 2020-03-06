@@ -11,6 +11,6 @@ export default class AIBrawler extends Brawler {
     super({ x: 20, y: 20 }, 'mediumseagreen', false)
     this.ai.fn = fn
     this.ai.brawler = this
-    this.ai.brawlerAPI = new AIControlledBrawler()
+    this.ai.brawlerAPI = new AIControlledBrawler(this)
   }
 }

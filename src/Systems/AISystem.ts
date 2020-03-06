@@ -1,8 +1,7 @@
-import Brawler from '../Entities/Brawler'
-import Bullet from '../Entities/Bullet'
-import AIControlledBrawlerCommand from '../AIAPI/AIControlledBrawlerCommand'
-import Game from './Game'
 import AIBrawler from '../Entities/AIBrawler'
+import AIControlledBrawlerCommand from '../AIAPI/AIControlledBrawlerCommand'
+import serializeGame from '../AIAPI/serializeGame'
+import Game from './Game'
 
 export default class AISystem {
   constructor(private game: Game) {
@@ -10,7 +9,7 @@ export default class AISystem {
   }
 
   public update(brawler: AIBrawler) {
-    brawler.ai.fn(brawler.ai.brawlerAPI, this.game.brawlers, this.game.bullets)
+    brawler.ai.fn(brawler.ai.brawlerAPI, serializeGame(this.game))
     this.flushCommands(brawler)
   }
 

@@ -21,7 +21,8 @@ const serializeBullet = (b: Bullet) => ({
   radian: b.radian,
   damage: b.damage,
   speed: b.speed,
-  owner: serializeBrawler(b.owner),
+  ownerID: b.owner.id,
+  team: b.owner.team,
 })
 
 export default function serializeGame(game: Game) {
@@ -30,3 +31,5 @@ export default function serializeGame(game: Game) {
     bullets: game.bullets.map(serializeBullet),
   }
 }
+
+export type SerializedGame = ReturnType<typeof serializeGame>

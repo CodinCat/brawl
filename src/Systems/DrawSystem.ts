@@ -40,11 +40,17 @@ export default class DrawSystem {
   }
 
   private drawBrawler(brawler: Brawler) {
-    this.canvas.drawCircle(
-      brawler.position.x,
-      brawler.position.y,
-      brawler.circle.radius,
-      brawler.color,
+    const { position, circle, radian, color } = brawler
+    const radianIndicatorWidth = 1
+    const radianIndicatorLength = 3
+    this.canvas.drawCircle(position.x, position.y, circle.radius, color)
+    this.canvas.drawRotatedRect(
+      position.x + Math.sin(radian) * 4.5 - radianIndicatorWidth / 2,
+      position.y - Math.cos(radian) * 4.5 - radianIndicatorLength / 2,
+      radianIndicatorWidth,
+      radianIndicatorLength,
+      'black',
+      radian,
     )
   }
 

@@ -4,8 +4,10 @@ import Brawler from '../Entities/Brawler'
 import RectEntity from '../Entities/RectEntity'
 
 export default class DrawSystem {
-  constructor(private canvas: Canvas) {
-    this.canvas = canvas
+  private canvas: Canvas
+
+  constructor(canvasElement: HTMLCanvasElement) {
+    this.canvas = new Canvas(canvasElement)
   }
 
   public draw(entities: Entity[] = []) {

@@ -1,19 +1,16 @@
-import Radian from '../Components/Radian'
-import Position from '../Components/Position'
 import Stage from '../Entities/Stage'
 import Brawler from '../Entities/Brawler'
 import AIBrawler from '../Entities/AIBrawler'
 import Bullet from '../Entities/Bullet'
-import DrawSystem from './DrawSystem'
-import MoveSystem from './MoveSystem'
-import RotateSystem from './RotateSystem'
-import UserControlSystem from './UserControlSystem'
+import AISystem from './AISystem'
 import BrawlerActionSystem from './BrawlerActionSystem'
 import BulletSystem from './BulletSystem'
 import CollisionSystem from './CollisionSystem'
 import DamageSystem from './DamageSystem'
-import Canvas from './Canvas'
-import AISystem from './AISystem'
+import DrawSystem from './DrawSystem'
+import MoveSystem from './MoveSystem'
+import RotateSystem from './RotateSystem'
+import UserControlSystem from './UserControlSystem'
 
 export default class Game {
   public drawSystem: DrawSystem
@@ -33,7 +30,7 @@ export default class Game {
     public brawlers: (Brawler | AIBrawler)[],
   ) {
     this.brawlers = brawlers
-    this.drawSystem = new DrawSystem(new Canvas(canvasElement, 5))
+    this.drawSystem = new DrawSystem(canvasElement)
   }
 
   public start() {
@@ -74,13 +71,13 @@ export default class Game {
     })
   }
 
-  private isAIBrawler(brawler): brawler is AIBrawler {
-    return typeof brawler.ai !== 'undefined'
-  }
-
   private scheduleNextUpdate() {
     requestAnimationFrame(() => {
       this.update()
     })
+  }
+
+  private isAIBrawler(brawler): brawler is AIBrawler {
+    return typeof brawler.ai !== 'undefined'
   }
 }

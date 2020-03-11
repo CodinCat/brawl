@@ -11,8 +11,16 @@ export default class BulletSystem {
   public shoot(brawler: Brawler) {
     if (brawler.bullet.count > 0) {
       brawler.bullet.count--
+      const center = getCenterPoint(brawler)
       this.game.addBullet(
-        new Bullet(brawler, getCenterPoint(brawler), brawler.radian),
+        new Bullet(
+          brawler,
+          {
+            x: center.x + Math.sin(brawler.radian) * 30,
+            y: center.y - Math.cos(brawler.radian) * 30,
+          },
+          brawler.radian,
+        ),
       )
     }
   }

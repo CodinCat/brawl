@@ -89,8 +89,8 @@ export default class DrawSystem {
   private drawDiedState(brawler: Brawler) {
     this.canvas.drawText(
       'Died',
-      brawler.position.x - 15,
-      brawler.position.y + 12.5,
+      brawler.position.x - 16,
+      brawler.position.y + 3,
       'black',
       '14px silom',
     )

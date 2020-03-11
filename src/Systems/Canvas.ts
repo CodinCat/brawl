@@ -62,10 +62,6 @@ export default class Canvas {
     ctx.fillText(text, x * this.gridSize, y * this.gridSize)
   }
 
-  public getCanvas() {
-    return this.canvasElement
-  }
-
   public getContext() {
     return this.canvasElement.getContext('2d')!
   }

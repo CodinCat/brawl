@@ -1,11 +1,9 @@
-import Brawler from '../Entities/Brawler'
-import Bullet from '../Entities/Bullet'
 import AIControlledBrawler from './AIControlledBrawler'
+import { SerializedGame } from './serializeGame'
 
 export default function(
   ownedBrawler: AIControlledBrawler,
-  brawlers: Brawler[],
-  bullets: Bullet[],
+  gameData: SerializedGame,
 ) {
   const r = Math.random()
   if (r > 0.9) {

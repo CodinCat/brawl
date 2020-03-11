@@ -29,6 +29,7 @@ export default function serializeGame(game: Game) {
   return {
     brawlers: game.brawlers.map(serializeBrawler),
     bullets: game.bullets.map(serializeBullet),
+    frameCount: game.frameCount,
   }
 }
 

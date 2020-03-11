@@ -1,10 +1,6 @@
 export default class Canvas {
-  constructor(
-    private canvasElement: HTMLCanvasElement,
-    private gridSize: number,
-  ) {
+  constructor(private canvasElement: HTMLCanvasElement) {
     this.canvasElement = canvasElement
-    this.gridSize = gridSize
   }
 
   public drawRotatedRect(
@@ -18,17 +14,9 @@ export default class Canvas {
     const ctx = this.getContext()
     ctx.save()
     ctx.beginPath()
-    ctx.translate(
-      (x + width / 2) * this.gridSize,
-      (y + height / 2) * this.gridSize,
-    )
+    ctx.translate(x + width / 2, y + height / 2)
     ctx.rotate(radian)
-    ctx.rect(
-      (-width / 2) * this.gridSize,
-      (-height / 2) * this.gridSize,
-      width * this.gridSize,
-      height * this.gridSize,
-    )
+    ctx.rect(-width / 2, -height / 2, width, height)
 
     ctx.fillStyle = color
     ctx.fill()
@@ -39,13 +27,7 @@ export default class Canvas {
     const ctx = this.getContext()
     ctx.beginPath()
     ctx.fillStyle = color
-    ctx.arc(
-      x * this.gridSize,
-      y * this.gridSize,
-      r * this.gridSize,
-      0,
-      2 * Math.PI,
-    )
+    ctx.arc(x, y, r, 0, 2 * Math.PI)
     ctx.fill()
   }
 
@@ -59,19 +41,11 @@ export default class Canvas {
     const ctx = this.getContext()
     ctx.fillStyle = color
     ctx.font = font
-    ctx.fillText(text, x * this.gridSize, y * this.gridSize)
+    ctx.fillText(text, x, y)
   }
 
   public getContext() {
     return this.canvasElement.getContext('2d')!
-  }
-
-  public getGriddedWidth() {
-    return this.getWidth() / this.gridSize
-  }
-
-  public getGriddedHeight() {
-    return this.getHeight() / this.gridSize
   }
 
   public getWidth() {

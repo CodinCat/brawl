@@ -41,12 +41,12 @@ export default class DrawSystem {
 
   private drawBrawler(brawler: Brawler) {
     const { position, circle, radian, color } = brawler
-    const radianIndicatorWidth = 1
-    const radianIndicatorLength = 3
+    const radianIndicatorWidth = 5
+    const radianIndicatorLength = 15
     this.canvas.drawCircle(position.x, position.y, circle.radius, color)
     this.canvas.drawRotatedRect(
-      position.x + Math.sin(radian) * 4.5 - radianIndicatorWidth / 2,
-      position.y - Math.cos(radian) * 4.5 - radianIndicatorLength / 2,
+      position.x + Math.sin(radian) * 22 - radianIndicatorWidth / 2,
+      position.y - Math.cos(radian) * 22 - radianIndicatorLength / 2,
       radianIndicatorWidth,
       radianIndicatorLength,
       'black',
@@ -56,19 +56,19 @@ export default class DrawSystem {
 
   private drawHPBar(brawler: Brawler) {
     this.canvas.drawRotatedRect(
-      brawler.position.x - 4.5,
-      brawler.position.y - 8,
-      brawler.circle.radius * 2 - 1,
-      2,
+      brawler.position.x - 22.5,
+      brawler.position.y - 40,
+      brawler.circle.radius * 2 - 5,
+      10,
       'black',
       0,
     )
     if (brawler.hp.value > 0) {
       this.canvas.drawRotatedRect(
-        brawler.position.x - 4,
-        brawler.position.y - 7.5,
-        (brawler.hp.value / brawler.hp.full) * (brawler.circle.radius * 2 - 2),
-        1,
+        brawler.position.x - 20,
+        brawler.position.y - 37.5,
+        (brawler.hp.value / brawler.hp.full) * (brawler.circle.radius * 2 - 10),
+        5,
         'tomato',
         0,
       )
@@ -78,8 +78,8 @@ export default class DrawSystem {
   private drawBulletCount(brawler: Brawler) {
     this.canvas.drawText(
       `${brawler.bullet.count}`,
-      brawler.position.x + 5.5,
-      brawler.position.y - 6.5,
+      brawler.position.x + 27.5,
+      brawler.position.y - 32.5,
       'black',
     )
   }
@@ -87,8 +87,8 @@ export default class DrawSystem {
   private drawDiedState(brawler: Brawler) {
     this.canvas.drawText(
       'Died',
-      brawler.position.x - 3,
-      brawler.position.y + 0.5,
+      brawler.position.x - 15,
+      brawler.position.y + 12.5,
       'black',
       '14px silom',
     )

@@ -26,7 +26,7 @@ export default class Game {
   public aiSystem = new AISystem(this)
   public bullets: Bullet[] = []
   public frameCount = 0
-  private stage = new Stage({ height: 120, width: 160 })
+  private stage = new Stage({ height: 600, width: 800 })
 
   constructor(
     canvasElement: HTMLCanvasElement,

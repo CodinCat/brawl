@@ -8,7 +8,7 @@ export default class AIBrawler extends Brawler {
   public ai = new AI()
 
   constructor(fn: AIFn) {
-    super({ x: 20, y: 20 }, 'mediumseagreen', false)
+    super({ x: 120, y: 100 }, 'mediumseagreen', false)
     this.ai.fn = fn
     this.ai.brawler = this
     this.ai.brawlerAPI = new AIControlledBrawler(this)

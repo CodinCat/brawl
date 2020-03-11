@@ -6,10 +6,10 @@ import Brawler from './Brawler'
 export default class Bullet implements RectEntity {
   type: 'RectEntity' = 'RectEntity'
   color = 'black'
-  rect = { width: 1, height: 1 }
+  rect = { width: 5, height: 5 }
   ttl = 50
   damage = 40
-  speed = 1.3
+  speed = 6.5
 
   constructor(
     public owner: Brawler,
